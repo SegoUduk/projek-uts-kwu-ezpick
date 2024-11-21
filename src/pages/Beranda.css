@@ -1,0 +1,67 @@
+ /* src/components/Beranda.css */
+
+.beranda {
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  .navbar .logo-image {
+    height: 40px;
+  }
+  
+  .nav-links a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .auth-buttons .login-button {
+    background-color: #ff6347;
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .banner {
+    text-align: center;
+    background: url('') no-repeat center center;
+    background-size: cover;
+    padding: 50px 0;
+    color: white;
+  }
+  
+  .categories {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .category-card {
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .category-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  
