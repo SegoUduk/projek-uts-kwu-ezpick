@@ -4,15 +4,29 @@ import './Navbar.css';
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [isRegister, setIsRegister] = useState(false); // State untuk toggle antara Login/Register
+  const [registerData, setRegisterData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    phone: '',
+  });
 
-  // Simulasi login/logout
   const handleLogin = () => {
     setIsLoggedIn(true);
     setShowLoginPopup(false);
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
+  const handleRegisterSubmit = () => {
+    // Simpan data register (bisa tambahkan validasi)
+    console.log('Data Register:', registerData);
+    setIsRegister(false); // Kembali ke tampilan login
+    setRegisterData({ username: '', email: '', password: '', phone: '' }); // Reset form
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setRegisterData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   return (
@@ -32,22 +46,74 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* Pop-up login */}
       {showLoginPopup && (
         <div className="popup-overlay">
           <div className="popup-box">
-            <h2>Login</h2>
-            <form>
-              <input type="email" placeholder="Email" required />
-              <input type="password" placeholder="Password" required />
-              <button type="button" onClick={handleLogin}>
-                Login
-              </button>
-            </form>
-            <p>
-              Belum punya akun?{' '}
-              <span className="register-link">Register</span>
-            </p>
+            {isRegister ? (
+              <>
+                <h2>Register</h2>
+                <form>
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={registerData.username}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={registerData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={registerData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Nomor Telepon"
+                    value={registerData.phone}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button type="button" onClick={handleRegisterSubmit}>
+                    Submit
+                  </button>
+                </form>
+                <p>
+                  Sudah punya akun?{' '}
+                  <span className="register-link" onClick={() => setIsRegister(false)}>
+                    Login
+                  </span>
+                </p>
+              </>
+            ) : (
+              <>
+                <h2>Login</h2>
+                <form>
+                  <input type="email" placeholder="Email" required />
+                  <input type="password" placeholder="Password" required />
+                  <button type="button" onClick={handleLogin}>
+                    Login
+                  </button>
+                </form>
+                <p>
+                  Belum punya akun?{' '}
+                  <span className="register-link" onClick={() => setIsRegister(true)}>
+                    Register
+                  </span>
+                </p>
+              </>
+            )}
             <button
               className="close-btn"
               onClick={() => setShowLoginPopup(false)}
