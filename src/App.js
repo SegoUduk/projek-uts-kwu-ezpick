@@ -1,13 +1,13 @@
-// src/App.js
 import React from 'react';
-import Beranda from './pages/Beranda';
+import Home from './pages/Home';
+import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Beranda />
+      <Home />
     </div>
   );
-}
+};
 
 export default App;
